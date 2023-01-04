@@ -3,13 +3,25 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import config from './config/config';
 import logger from './config/logger';
-import sample from './routes/sample';
+import book from './routes/book';
+import mongoose from 'mongoose';
 
 const NAMESPACE = 'Server';
-const router = express();
+const app = express();
+
+/**Connect to MongoDB */
+mongoose.set('strictQuery', false);
+mongoose
+  .connect(config.mongo.uri, config.mongo.options)
+  .then((result) => {
+    logger.info(NAMESPACE, `Connected to MongoDB`);
+  })
+  .catch((error) => {
+    logger.error(NAMESPACE, error.message, error);
+  });
 
 /**Logging the Request */
-router.use((req, res, next) => {
+app.use((req, res, next) => {
   logger.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
 
   res.on('finish', () => {
@@ -20,11 +32,11 @@ router.use((req, res, next) => {
 });
 
 /**Parse the Request */
-router.use(bodyParser.urlencoded({ extended: false }));
-router.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 /**Rules of our API */
-router.use((req, res, next) => {
+app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-Width, Content-Type, Accept, Authorization');
 
@@ -36,10 +48,10 @@ router.use((req, res, next) => {
 });
 
 /**Routing */
-router.use(sample);
+app.use(book);
 
 /**Route Error Handling */
-router.use((req, res, next) => {
+app.use((req, res, next) => {
   const error = new Error('route not found');
 
   return res.status(404).json({
@@ -47,5 +59,5 @@ router.use((req, res, next) => {
   });
 });
 
-const httpServer = http.createServer(router);
+const httpServer = http.createServer(app);
 httpServer.listen(config.server.port, () => logger.info(NAMESPACE, `Server running on port ${config.server.hostname}: ${config.server.port}`));
