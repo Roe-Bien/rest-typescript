@@ -1,7 +1,7 @@
 {
   "name": "rest-api",
   "version": "1.0.0",
-  "main": "source/server",
+  "main": "src/server",
   "license": "MIT",
   "scripts": {
     "start": "nodemon source/server.ts",
