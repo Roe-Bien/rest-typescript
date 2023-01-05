@@ -12,10 +12,9 @@ const MONGO_OPTIONS = {
   retryWrites: false,
 };
 
-//Database URI: mongodb+srv://roebien:mongodb123@cluster0.jnb6z.mongodb.net/rest-api-canuck?retryWrites=true&w=majority
-const MONGO_USERNAME = process.env.MONGO_USERNAME || 'roebien';
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'mongodb123';
-const MONGO_HOST = process.env.MONGO_URI || 'cluster0.jnb6z.mongodb.net/rest-api-canuck?retryWrites=true&w=majority';
+const MONGO_USERNAME = process.env.MONGO_USERNAME;
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+const MONGO_HOST = process.env.MONGO_URI;
 
 const MONGO = {
   host: MONGO_HOST,

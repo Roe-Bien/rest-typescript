@@ -9,12 +9,18 @@ import mongoose from 'mongoose';
 const NAMESPACE = 'Server';
 const app = express();
 
+const getCurrentYear = () => {
+  return new Date().getFullYear();
+};
+
+console.log(getCurrentYear);
+
 /**Connect to MongoDB */
 mongoose.set('strictQuery', false);
 mongoose
   .connect(config.mongo.uri, config.mongo.options)
   .then((result) => {
-    logger.info(NAMESPACE, `Connected to MongoDB`);
+    logger.info(NAMESPACE, `Connected to Database`);
   })
   .catch((error) => {
     logger.error(NAMESPACE, error.message, error);
