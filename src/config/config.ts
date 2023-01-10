@@ -2,6 +2,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+//Database Configuration
+const MONGO_USERNAME = process.env.MONGO_USERNAME;
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+const MONGO_HOST = process.env.MONGO_URI;
+
 const MONGO_OPTIONS = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -12,10 +17,6 @@ const MONGO_OPTIONS = {
   retryWrites: false,
 };
 
-const MONGO_USERNAME = process.env.MONGO_USERNAME;
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
-const MONGO_HOST = process.env.MONGO_URI;
-
 const MONGO = {
   host: MONGO_HOST,
   username: MONGO_USERNAME,
@@ -24,8 +25,9 @@ const MONGO = {
   uri: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}`,
 };
 
-const SERVER_HOSTNAME = process.env.SERVER_PORT || 'localhost';
-const SERVER_PORT = process.env.SERVER_PORT || 1337;
+//Server Configuration
+const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME;
+const SERVER_PORT = process.env.SERVER_PORT;
 
 const SERVER = {
   hostname: SERVER_HOSTNAME,

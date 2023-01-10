@@ -9,12 +9,6 @@ import mongoose from 'mongoose';
 const NAMESPACE = 'Server';
 const app = express();
 
-const getCurrentYear = () => {
-  return new Date().getFullYear();
-};
-
-console.log(getCurrentYear);
-
 /**Connect to MongoDB */
 mongoose.set('strictQuery', false);
 mongoose

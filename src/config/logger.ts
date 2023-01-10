@@ -12,7 +12,7 @@ const logger = pino({
 
 const info = (namespace: string, message: string, object?: any) => {
   if (object) {
-    logger.info(`[${namespace}] ${message} `);
+    logger.info(`[${namespace}] ${message}`, object);
   } else {
     logger.info(`[${namespace}] ${message} `);
   }
