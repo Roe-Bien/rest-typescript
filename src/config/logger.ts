@@ -1,5 +1,6 @@
 import pino from 'pino';
 
+// Logger for better message handling during development
 const logger = pino({
   transport: {
     target: 'pino-pretty',
@@ -14,23 +15,23 @@ const info = (namespace: string, message: string, object?: any) => {
   if (object) {
     logger.info(`[${namespace}] ${message}`, object);
   } else {
-    logger.info(`[${namespace}] ${message} `);
+    logger.info(`[${namespace}] ${message}`);
   }
 };
 
 const warn = (namespace: string, message: string, object?: any) => {
   if (object) {
-    console.warn(`[${namespace}] ${message} `, object);
+    console.warn(`[${namespace}] ${message}`, object);
   } else {
-    console.warn(`[${namespace}] ${message} `);
+    console.warn(`[${namespace}] ${message}`);
   }
 };
 
 const error = (namespace: string, message: string, object?: any) => {
   if (object) {
-    console.error(`[${namespace}] ${message} `, object);
+    console.error(`[${namespace}] ${message}`, object);
   } else {
-    console.error(`[${namespace}] ${message} `);
+    console.error(`[${namespace}] ${message}`);
   }
 };
 

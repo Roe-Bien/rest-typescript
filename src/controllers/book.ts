@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import Book from '../models/book';
 import mongoose from 'mongoose';
 
-const NAMESPACE = 'Sample Controller';
+const NAMESPACE = 'Books';
 
 const createBook = (req: Request, res: Response, next: NextFunction) => {
   let { author, title } = req.body;

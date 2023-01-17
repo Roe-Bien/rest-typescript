@@ -20,7 +20,7 @@ mongoose
     logger.error(NAMESPACE, error.message, error);
   });
 
-/**Logging the Request */
+/** Request Logging */
 app.use((req, res, next) => {
   logger.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}]`);
 
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-/**Rules of our API */
+/**API rules */
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-Width, Content-Type, Accept, Authorization');
@@ -47,7 +47,7 @@ app.use((req, res, next) => {
   next();
 });
 
-/**Routing */
+/**Route */
 app.use(book);
 
 /**Route Error Handling */
@@ -59,5 +59,6 @@ app.use((req, res, next) => {
   });
 });
 
+// Create and Listen to Server
 const httpServer = http.createServer(app);
 httpServer.listen(config.server.port, () => logger.info(NAMESPACE, `Server running on port ${config.server.hostname}: ${config.server.port}`));
