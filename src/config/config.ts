@@ -29,9 +29,19 @@ const MONGO = {
 const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME;
 const SERVER_PORT = process.env.SERVER_PORT;
 
+//Auth Configuration
+const SERVER_TOKEN_EXPIRATION = process.env.SERVER_TOKEN_EXPIRATION || 3600;
+const SERVER_TOKEN_ISSUER = process.env.SERVER_TOKEN_ISSUER || 'coolIssuer';
+const SERVER_TOKEN_SECRET = process.env.SERVER_TOKEN_SECRET || 'superencryptedsecret';
+
 const SERVER = {
   hostname: SERVER_HOSTNAME,
   port: SERVER_PORT,
+  token: {
+    expiration: SERVER_TOKEN_EXPIRATION,
+    issuer: SERVER_TOKEN_ISSUER,
+    secret: SERVER_TOKEN_SECRET,
+  },
 };
 
 const config = {
