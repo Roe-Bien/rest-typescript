@@ -6,9 +6,9 @@ import jwt from 'jsonwebtoken';
 const NAMESPACE = 'Auth';
 
 const signJWT = (user: IUser, callback: (error: Error | null, token: string | null) => void): void => {
-  const timeSinceEpoch = new Date().getTime(); // return time (Trivia: January 1, 1970 is Unix epoch)
-  const expirationTime = timeSinceEpoch + Number(config.server.token.expiration) * 100_000; // return time in milliseconds
-  const expirationTimeInSeconds = Math.floor(expirationTime / 1_000);
+  var timeSinceEpoch = new Date().getTime(); // return time (Trivia: January 1, 1970 is Unix epoch)
+  var expirationTime = timeSinceEpoch + Number(config.server.token.expiration) * 100_000; // return time in milliseconds
+  var expirationTimeInSeconds = Math.floor(expirationTime / 1_000);
 
   logger.info(NAMESPACE, `Attempting to sign token for ${user.username}`);
 
